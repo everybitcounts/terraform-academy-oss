@@ -1,0 +1,78 @@
+/*
+ * Terraform Academy OSS — Octagon Background Animations
+ *
+ * Floating octagon particles that animate in the background.
+ * Include this CSS and add the HTML structure below.
+ *
+ * HTML:
+ *   <div class="background-octagons">
+ *     <span style="top:10%;left:10%;font-size:60px;animation-duration:22s;">⬡</span>
+ *     <span style="top:40%;left:70%;font-size:80px;animation-duration:18s;">⬡</span>
+ *     ...
+ *   </div>
+ */
+
+.background-octagons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-octagons span {
+  position: absolute;
+  font-size: 50px;
+  color: rgba(0, 255, 200, 0.1);
+  animation: octFloat 20s infinite linear;
+}
+
+[data-theme="light"] .background-octagons span {
+  color: rgba(0, 170, 255, 0.1);
+}
+
+@keyframes octFloat {
+  0%   { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(-10vh) rotate(360deg); }
+}
+
+/* Multi-directional floating (for labs) */
+.oct1 { animation: octDrift1 40s linear infinite !important; }
+.oct2 { animation: octDrift2 60s linear infinite !important; }
+.oct3 { animation: octDrift3 50s linear infinite !important; }
+.oct4 { animation: octDrift4 70s linear infinite !important; }
+
+@keyframes octDrift1 {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(30px, -40px) rotate(90deg); }
+  50%  { transform: translate(-20px, 20px) rotate(180deg); }
+  75%  { transform: translate(10px, -10px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes octDrift2 {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(-40px, 30px) rotate(90deg); }
+  50%  { transform: translate(25px, -20px) rotate(180deg); }
+  75%  { transform: translate(-10px, 10px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes octDrift3 {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(20px, 20px) rotate(90deg); }
+  50%  { transform: translate(-30px, -10px) rotate(180deg); }
+  75%  { transform: translate(15px, 25px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes octDrift4 {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(10px, -30px) rotate(90deg); }
+  50%  { transform: translate(-25px, 15px) rotate(180deg); }
+  75%  { transform: translate(20px, -20px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}

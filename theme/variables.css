@@ -1,0 +1,37 @@
+/*
+ * Terraform Academy OSS — CSS Variables (Theme System)
+ *
+ * Override these variables to customize the entire look.
+ * Both dark and light mode are supported via [data-theme].
+ */
+
+:root {
+  /* ─── Dark Theme (Default) ─── */
+  --primary-bg: #0a0a1a;
+  --primary-text: #ffffff;
+  --sidebar-bg: #16191f;
+  --sidebar-text: #d5dbdb;
+  --accent: #00ffd5;
+  --button-bg: #00ffd5;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --shadow: rgba(0, 255, 255, 0.08);
+  --correct-bg: rgba(40, 167, 69, 0.2);
+  --incorrect-bg: rgba(220, 53, 69, 0.2);
+  --hover-bg: #66ffe6;
+  --menu-button-bg: #00aaff;
+}
+
+[data-theme="light"] {
+  --primary-bg: #f0f8ff;
+  --primary-text: #000000;
+  --sidebar-bg: #e6f2ff;
+  --sidebar-text: #333333;
+  --accent: #00aaff;
+  --button-bg: #00aaff;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --shadow: rgba(0, 0, 0, 0.1);
+  --correct-bg: rgba(40, 167, 69, 0.15);
+  --incorrect-bg: rgba(220, 53, 69, 0.15);
+  --hover-bg: #0099e6;
+  --menu-button-bg: #0073bb;
+}

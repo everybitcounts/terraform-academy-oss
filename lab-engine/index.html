@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Lab Engine Demo — Terraform Academy OSS</title>
+  <link rel="stylesheet" href="../theme/variables.css">
+  <link rel="stylesheet" href="../theme/octagons.css">
+  <link rel="stylesheet" href="lab-engine.css">
+</head>
+<body>
+  <!-- Background -->
+  <div class="background-octagons">
+    <span class="oct1" style="top:10%; left:10%;">⬡</span>
+    <span class="oct2" style="top:40%; left:70%;">⬡</span>
+    <span class="oct3" style="top:70%; left:30%;">⬡</span>
+    <span class="oct4" style="top:20%; left:80%;">⬡</span>
+    <span class="oct1" style="top:85%; left:15%;">⬡</span>
+    <span class="oct2" style="top:65%; left:90%;">⬡</span>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <button class="instructions-toggle" onclick="LabEngine.toggleInstructions()">Hide Instructions</button>
+      <h1 id="lab-title">Sample Lab</h1>
+      <button class="theme-toggle" onclick="LabEngine.toggleTheme()">App Mode</button>
+    </div>
+
+    <!-- Content -->
+    <div class="main-content">
+      <!-- Instructions Panel -->
+      <div class="instructions" id="instructions">
+        <h2 id="instruction-title">Instructions</h2>
+        <div id="instruction-body">
+          <p>Loading lab instructions...</p>
+        </div>
+      </div>
+
+      <!-- Editor + Terminal -->
+      <div class="editor-terminal">
+        <!-- File Tree -->
+        <div class="workspace">
+          <h3>GitOps Repository</h3>
+          <div class="file-tree" id="file-tree"></div>
+        </div>
+
+        <!-- Code Editor -->
+        <div class="editor-section">
+          <h3>Code Editor</h3>
+          <button class="modal-toggle" onclick="LabEngine.openEditorModal()">↗</button>
+          <textarea id="editor" spellcheck="false"></textarea>
+        </div>
+
+        <!-- Terminal -->
+        <div class="terminal-section">
+          <h3>Terminal</h3>
+          <button class="modal-toggle" onclick="LabEngine.openTerminalModal()">↗</button>
+          <textarea id="terminal" readonly>Initializing lab environment...
+Ready.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+      <button class="check-btn" onclick="LabEngine.check()">Check</button>
+      <button class="clear-btn" onclick="LabEngine.clearTerminal()">Clear Terminal</button>
+      <button class="check-answer-btn" onclick="LabEngine.showAnswer()">Show Answer</button>
+      <button class="restart-btn" onclick="LabEngine.restart()">Restart</button>
+    </div>
+  </div>
+
+  <!-- Editor Modal (fullscreen) -->
+  <dialog id="editorModal">
+    <div class="modal-content">
+      <div class="modal-header">Code Editor</div>
+      <div class="modal-body">
+        <div class="editor-container">
+          <div class="line-numbers" id="editorLineNumbers"></div>
+          <textarea id="editorModalContent" spellcheck="false"></textarea>
+        </div>
+      </div>
+      <button class="modal-toggle" onclick="LabEngine.closeEditorModal()">✕</button>
+    </div>
+  </dialog>
+
+  <!-- Terminal Modal (fullscreen) -->
+  <dialog id="terminalModal">
+    <div class="modal-content">
+      <div class="modal-header">Terminal</div>
+      <div class="modal-body">
+        <div class="editor-container">
+          <div class="line-numbers" id="terminalLineNumbers"></div>
+          <textarea id="terminalModalContent" readonly></textarea>
+        </div>
+      </div>
+      <button class="modal-toggle" onclick="LabEngine.closeTerminalModal()">✕</button>
+    </div>
+  </dialog>
+
+  <!-- Completion Prompt -->
+  <div id="completionPrompt">
+    <div class="burst-octagons">
+      <span class="burst-oct" style="top:10%; left:20%;">⬡</span>
+      <span class="burst-oct" style="top:30%; left:40%;">⬡</span>
+      <span class="burst-oct" style="top:50%; left:60%;">⬡</span>
+      <span class="burst-oct" style="top:70%; left:80%;">⬡</span>
+      <span class="burst-oct" style="top:20%; left:70%;">⬡</span>
+      <span class="burst-oct" style="top:60%; left:10%;">⬡</span>
+    </div>
+    <div class="burst-message">
+      <h2>Nicely Done!</h2>
+      <p id="completion-text">Congrats on completing the lab!</p>
+      <button onclick="LabEngine.restart()">Restart</button>
+    </div>
+  </div>
+
+  <!-- Lab Engine Core -->
+  <script src="lab-engine.js"></script>
+
+  <!-- Sample Lab Definition -->
+  <script src="sample-lab.js"></script>
+
+  <!-- Initialize -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      LabEngine.init(SAMPLE_LAB);
+    });
+  </script>
+</body>
+</html>

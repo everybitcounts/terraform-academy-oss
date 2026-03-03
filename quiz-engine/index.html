@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Quiz Engine Demo — Terraform Academy OSS</title>
+  <link rel="stylesheet" href="../theme/variables.css">
+  <link rel="stylesheet" href="../theme/glassmorphism.css">
+  <link rel="stylesheet" href="../theme/octagons.css">
+  <link rel="stylesheet" href="quiz-engine.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="background-octagons">
+    <span style="top:10%;left:10%;font-size:60px;animation-duration:22s;">⬡</span>
+    <span style="top:40%;left:70%;font-size:80px;animation-duration:18s;">⬡</span>
+    <span style="top:70%;left:30%;font-size:40px;animation-duration:25s;">⬡</span>
+    <span style="top:20%;left:80%;font-size:70px;animation-duration:15s;">⬡</span>
+    <span style="top:80%;left:90%;font-size:50px;animation-duration:28s;">⬡</span>
+    <span style="top:5%;left:40%;font-size:30px;animation-duration:30s;">⬡</span>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button class="menu-button" onclick="QuizEngine.toggleMenu()">☰</button>
+  <div class="menu-overlay" onclick="QuizEngine.toggleMenu()"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar hidden" id="sidebar">
+    <h3 id="sidebar-title">Quiz Modules</h3>
+    <ul id="module-list"></ul>
+    <ul id="utility-list" style="margin-top: 20px; border-top: 1px solid var(--sidebar-text); padding-top: 10px;">
+      <li data-module="review_progress" class="review-tab">Review Progress</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="console-header">
+      <span id="quiz-title">Quiz Engine Demo</span>
+      <div class="toggle-switch" id="themeToggle">
+        <div class="toggle-circle"></div>
+      </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+      <h1 id="module-title">Loading...</h1>
+      <div id="timer">Time Remaining: --:--</div>
+      <div class="progress-bar">
+        <div class="progress" id="progress" style="width: 0%"></div>
+      </div>
+      <div class="question-nav" id="question-nav"></div>
+      <div id="question"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="nav-buttons">
+        <button class="btn" id="prev-btn" disabled>Previous</button>
+        <button class="btn" id="submit-btn">Submit</button>
+        <button class="btn" id="next-btn">Next</button>
+      </div>
+    </div>
+
+    <div class="review-progress-container" id="review-progress-container"></div>
+
+    <!-- Module Completion -->
+    <div class="congratulations-screen" id="module-congratulations">
+      <div class="certificate">
+        <h2>Congratulations!</h2>
+        <p>You completed the <span id="completed-module"></span> module!</p>
+        <p>Score: <span id="module-score"></span></p>
+        <div class="question-summary" id="question-summary-module"></div>
+        <button class="btn" id="next-module-btn">Next Module</button>
+        <button class="btn" id="restart-module-btn">Restart Module</button>
+      </div>
+    </div>
+
+    <!-- Final Certificate -->
+    <div class="congratulations-screen" id="final-certificate">
+      <div class="certificate">
+        <h2 id="final-cert-title">Certificate of Completion</h2>
+        <p>Congratulations on completing all modules!</p>
+        <p>Date: <span id="completion-date"></span></p>
+        <div class="question-summary" id="question-summary-final"></div>
+        <button class="btn" id="restart-all-btn">Restart All Modules</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Engine Core -->
+  <script src="quiz-engine.js"></script>
+
+  <!-- Sample Question Bank (replace with your own) -->
+  <script src="sample-questions.js"></script>
+
+  <!-- Initialize -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Configure the quiz engine
+      QuizEngine.init({
+        title: 'Cloud Fundamentals Quiz',
+        sidebarTitle: 'Quiz Modules',
+        certTitle: 'Cloud Fundamentals Certificate',
+        timePerModule: 600,        // 10 minutes per module
+        storageKey: 'oss-quiz-demo', // localStorage key
+        questions: SAMPLE_QUESTIONS  // from sample-questions.js
+      });
+    });
+  </script>
+</body>
+</html>

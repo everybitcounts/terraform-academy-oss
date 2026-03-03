@@ -1,0 +1,290 @@
+/* Lab Engine — Styles */
+
+/* ─── Core Reset ─── */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #000; color: #fff; height: 100%;
+  overflow-x: hidden; overscroll-behavior: none;
+  position: relative; -webkit-text-size-adjust: 100%; touch-action: manipulation;
+}
+textarea {
+  -webkit-text-size-adjust: 100%;
+  -webkit-user-select: text; user-select: text; touch-action: pan-y;
+}
+
+/* ─── App Mode Theme ─── */
+body.app-mode {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #000; color: #fff;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Container ─── */
+.container {
+  display: flex; flex-direction: column; height: 100vh;
+  padding: 10px; position: relative; z-index: 1;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex; align-items: center; padding: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,255,213,0.15);
+  border-radius: 8px; backdrop-filter: blur(12px);
+  margin-bottom: 10px; gap: 10px;
+}
+body.app-mode .header {
+  border-radius: 20px; background: rgba(255,255,255,0.05);
+  padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(15px); border: none;
+}
+.header h1 {
+  font-size: 1.2rem; flex: 1;
+  background: linear-gradient(to right, #00ffd5, #66ffe6);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+body.app-mode .header h1 {
+  background: none; -webkit-text-fill-color: #fff; color: #fff; font-weight: 700;
+}
+
+/* ─── Buttons (both modes) ─── */
+.theme-toggle, .instructions-toggle {
+  padding: 4px 8px; border: 1px solid #00ffd5; background: transparent;
+  color: #00ffd5; border-radius: 4px; backdrop-filter: blur(5px);
+  cursor: pointer; font-weight: bold; font-size: 0.7rem; transition: background 0.3s, transform 0.1s ease;
+}
+body.app-mode .theme-toggle, body.app-mode .instructions-toggle {
+  border: none; border-radius: 14px; padding: 10px 16px;
+  background: rgba(255,255,255,0.06); font-weight: 600; font-size: 0.8rem;
+  backdrop-filter: blur(10px); box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+.theme-toggle:hover, .instructions-toggle:hover { background: rgba(0,255,213,0.05); }
+body.app-mode .theme-toggle:hover, body.app-mode .instructions-toggle:hover {
+  background: rgba(255,255,255,0.12); transform: scale(1.02);
+}
+
+/* ─── Main Content ─── */
+.main-content { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 10px 0; }
+
+/* ─── Instructions ─── */
+.instructions {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,213,0.15);
+  border-radius: 8px; backdrop-filter: blur(12px); padding: 15px;
+  display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+body.app-mode .instructions {
+  border-radius: 20px; background: rgba(255,255,255,0.05);
+  padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(15px); border: none;
+}
+.instructions.hidden { display: none; }
+.instructions h2 { font-size: 1.1rem; color: #00ffd5; margin-bottom: 10px; }
+body.app-mode .instructions h2 { font-weight: 700; }
+.instructions p { font-size: 0.9rem; line-height: 1.4; }
+.instructions code {
+  background: rgba(0,255,213,0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.85rem;
+}
+
+/* ─── Workspace / File Tree ─── */
+.workspace {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,213,0.15);
+  border-radius: 8px; backdrop-filter: blur(12px); padding: 10px;
+  margin-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+body.app-mode .workspace {
+  border-radius: 20px; background: rgba(255,255,255,0.05);
+  padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(15px); border: none;
+}
+.workspace h3 { font-size: 0.9rem; color: #00ffd5; margin-bottom: 10px; }
+body.app-mode .workspace h3 { font-weight: 700; }
+.file-tree { font-size: 0.9rem; color: #ccc; }
+body.app-mode .file-tree { color: #ddd; }
+.file-tree ul { list-style: none; padding-left: 15px; }
+.file-tree li { margin: 5px 0; }
+.file-tree li.file { color: #00ffd5; cursor: pointer; }
+
+/* ─── Editor + Terminal ─── */
+.editor-terminal { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.editor-section, .terminal-section {
+  flex: 1; display: flex; flex-direction: column; position: relative;
+}
+.editor-section h3, .terminal-section h3 {
+  font-size: 0.9rem; color: #00ffd5; padding: 5px 10px;
+  background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(0,255,213,0.15);
+  backdrop-filter: blur(5px);
+}
+body.app-mode .editor-section, body.app-mode .terminal-section {
+  border-radius: 20px; background: rgba(255,255,255,0.05);
+  padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(15px); border: none;
+}
+body.app-mode .editor-section h3, body.app-mode .terminal-section h3 {
+  padding: 0; background: none; border-bottom: none; font-weight: 700; margin-bottom: 10px;
+}
+
+#editor, #terminal {
+  flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,213,0.15);
+  border-radius: 4px; backdrop-filter: blur(12px); padding: 10px;
+  font-family: monospace; font-size: 0.9rem; color: #fff; resize: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+body.app-mode #editor, body.app-mode #terminal {
+  border-radius: 12px; background: rgba(255,255,255,0.05);
+  font-size: 0.85rem; padding: 12px; border: none; box-shadow: none;
+}
+#terminal { color: #00ffd5; height: 40% !important; min-height: 60px; max-height: 160px; }
+
+/* ─── Action Buttons ─── */
+.button-group { display: flex; gap: 5px; margin-top: 10px; flex-wrap: wrap; }
+body.app-mode .button-group {
+  gap: 8px; flex-wrap: wrap; justify-content: center; padding: 12px 0;
+}
+
+.check-btn, .clear-btn, .check-answer-btn, .restart-btn {
+  flex: 1; padding: 5px; border: 1px solid #00ffd5; background: transparent;
+  color: #00ffd5; border-radius: 4px; backdrop-filter: blur(5px);
+  font-size: 0.7rem; font-weight: 600; cursor: pointer; text-align: center;
+  min-width: 50px; transition: background 0.3s;
+}
+body.app-mode .check-btn, body.app-mode .clear-btn,
+body.app-mode .check-answer-btn, body.app-mode .restart-btn {
+  border: none; border-radius: 14px; padding: 10px 16px;
+  background: rgba(255,255,255,0.06); font-weight: 600; font-size: 0.8rem;
+  backdrop-filter: blur(10px); box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+.check-btn:hover { background: rgba(0,255,213,0.05); }
+.clear-btn:hover { background: rgba(255,85,85,0.05); }
+.check-answer-btn:hover { background: rgba(85,85,221,0.05); }
+.restart-btn:hover { background: rgba(255,170,0,0.05); }
+body.app-mode .check-btn:hover, body.app-mode .clear-btn:hover,
+body.app-mode .check-answer-btn:hover, body.app-mode .restart-btn:hover {
+  background: rgba(255,255,255,0.12); transform: scale(1.02);
+}
+
+/* ─── Modal Toggle ─── */
+.modal-toggle {
+  position: absolute; top: 5px; right: 5px; width: 20px; height: 20px;
+  background: transparent; border: 1px solid #00ffd5; color: #00ffd5;
+  border-radius: 4px; cursor: pointer; font-size: 0.7rem;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(5px); transition: background 0.3s;
+}
+body.app-mode .modal-toggle {
+  border: none; border-radius: 14px; padding: 10px;
+  background: rgba(255,255,255,0.06); font-weight: 600; font-size: 0.8rem;
+  backdrop-filter: blur(10px); box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  width: 30px; height: 30px;
+}
+.modal-toggle:hover { background: rgba(0,255,213,0.05); }
+body.app-mode .modal-toggle:hover { background: rgba(255,255,255,0.12); transform: scale(1.02); }
+
+/* ─── Dialog / Modals ─── */
+dialog {
+  width: 90vw; height: 80vh; max-width: 800px; max-height: 600px;
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,213,0.15);
+  border-radius: 8px; backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 10px; z-index: 1000;
+}
+body.app-mode dialog {
+  width: 92vw; max-width: 768px; height: 80vh;
+  border: none; border-radius: 24px; background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(20px); box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  padding: 20px; color: #fff;
+}
+dialog::backdrop { background: rgba(0,0,0,0.5); }
+
+.modal-content { height: 100%; display: flex; flex-direction: column; }
+.modal-header {
+  font-size: 0.9rem; color: #00ffd5; padding: 5px 10px;
+  background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(0,255,213,0.15);
+}
+body.app-mode .modal-header {
+  font-size: 1rem; font-weight: 700; margin-bottom: 10px;
+  padding: 0; background: none; border-bottom: none;
+}
+.modal-body { flex: 1; padding: 10px; display: flex; }
+
+.editor-container {
+  display: flex; width: 100%; height: 100%;
+  background: transparent; border: 1px solid rgba(0,255,213,0.15); border-radius: 4px;
+}
+body.app-mode .editor-container {
+  border: none; border-radius: 12px; background: rgba(255,255,255,0.05);
+}
+
+.line-numbers {
+  width: 40px; background: rgba(255,255,255,0.02); color: #888;
+  font-family: monospace; font-size: 0.9rem; text-align: right;
+  padding: 10px 5px; overflow: hidden; user-select: none;
+  border-right: 1px solid rgba(0,255,213,0.15);
+}
+body.app-mode .line-numbers {
+  background: rgba(255,255,255,0.05); color: #aaa; font-size: 0.85rem; border-right: none;
+}
+.line-numbers div { line-height: 1.5em; padding-right: 5px; }
+
+.modal-body textarea {
+  flex: 1; background: transparent; border: none;
+  font-family: monospace; font-size: 0.9rem; color: #fff;
+  resize: none; padding: 10px; line-height: 1.5em; overflow-y: auto;
+}
+body.app-mode .modal-body textarea {
+  background: rgba(255,255,255,0.05); font-size: 0.85rem; padding: 12px; border-radius: 12px;
+}
+#terminalModal textarea { color: #00ffd5; }
+
+/* ─── Completion Prompt ─── */
+#completionPrompt {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 9999; display: none;
+}
+.burst-octagons {
+  position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: 1;
+}
+.burst-oct {
+  position: absolute; font-size: 4rem; font-weight: bold;
+  color: rgba(79,195,247,0.8);
+  animation: pulseburst 4s ease-in-out infinite;
+}
+@keyframes pulseburst {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  50% { transform: scale(1.8) rotate(180deg); opacity: 1; }
+}
+.burst-message {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 1.2rem; color: rgba(79,195,247,0.9);
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(0,255,213,0.15);
+  backdrop-filter: blur(12px); padding: 2rem 3rem; border-radius: 12px;
+  font-weight: bold; text-align: center; z-index: 2;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+body.app-mode .burst-message {
+  border-radius: 20px; background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(15px); padding: 2rem; color: #00ffd5;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4); border: none;
+}
+.burst-message h2 { margin-bottom: 0.5rem; color: rgba(79,195,247,1); }
+body.app-mode .burst-message h2 { font-size: 1.4rem; margin-bottom: 1rem; color: #00ffd5; }
+.burst-message button {
+  margin-top: 1rem; padding: 0.6rem 1.2rem;
+  background: transparent; border: 1px solid rgba(79,195,247,0.9);
+  color: rgba(79,195,247,0.9); border-radius: 6px;
+  font-size: 1rem; cursor: pointer; backdrop-filter: blur(5px); transition: background 0.3s;
+}
+body.app-mode .burst-message button {
+  padding: 10px 16px; border-radius: 12px; border: none;
+  background: rgba(255,255,255,0.1); color: #00ffd5; font-weight: 600;
+  font-size: 0.9rem; backdrop-filter: blur(10px);
+}
+.burst-message button:hover { background: rgba(79,195,247,0.05); }
+body.app-mode .burst-message button:hover { background: rgba(255,255,255,0.2); transform: scale(1.02); }
+
+/* ─── Desktop Layout ─── */
+@media (min-width: 768px) {
+  .main-content { flex-direction: row; }
+  .instructions { flex: 0 0 30%; max-height: 80vh; overflow-y: auto; }
+  .editor-terminal { flex: 0 0 70%; }
+  .editor-section, .terminal-section { flex: 1; }
+}

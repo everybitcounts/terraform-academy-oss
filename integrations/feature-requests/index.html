@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Feature Requests — Community Portal</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #030712;
+      --bg-card: rgba(15,23,42,0.6);
+      --bg-card-solid: #0f172a;
+      --border-glass: rgba(148,163,184,0.1);
+      --border-glow: rgba(59,130,246,0.3);
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #22d3ee;
+      --accent-green: #10b981;
+      --accent-orange: #f97316;
+      --accent-red: #ef4444;
+      --r-xl: 24px;
+      --r-lg: 16px;
+      --r-md: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark); color: var(--text-primary);
+      line-height: 1.6; min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .content-wrapper {
+      padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 100px);
+    }
+    .container { max-width: 680px; margin: 0 auto; }
+
+    /* Header */
+    .page-header { text-align: center; padding: 8px 0 20px; }
+    .page-header h1 {
+      font-size: 1.6rem; font-weight: 800; margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .page-header p { color: var(--text-secondary); font-size: 0.9rem; }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex; background: var(--bg-card);
+      border-radius: var(--r-lg); padding: 4px;
+      border: 1px solid var(--border-glass); margin-bottom: 20px;
+    }
+    .tab-btn {
+      flex: 1; padding: 10px; border: none; background: none;
+      color: var(--text-muted); font-weight: 600; font-size: 0.85rem;
+      border-radius: var(--r-md); cursor: pointer; transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--accent-blue); color: white;
+    }
+
+    /* Tab Content */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border-glass);
+      border-radius: var(--r-xl); padding: 16px; margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--border-glow); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .card-desc { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 8px; }
+    .card-meta { display: flex; gap: 12px; font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Status Badges */
+    .badge {
+      display: inline-block; padding: 2px 10px; border-radius: 20px;
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    }
+    .badge-submitted { background: rgba(59,130,246,0.2); color: var(--accent-blue); }
+    .badge-planned { background: rgba(168,85,247,0.2); color: #a855f7; }
+    .badge-in-progress { background: rgba(249,115,22,0.2); color: var(--accent-orange); }
+    .badge-completed { background: rgba(16,185,129,0.2); color: var(--accent-green); }
+
+    /* Form */
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 12px; background: var(--bg-card-solid);
+      border: 1px solid var(--border-glass); border-radius: var(--r-md);
+      color: var(--text-primary); font-size: 0.9rem; font-family: inherit;
+    }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    }
+
+    .submit-btn {
+      width: 100%; padding: 14px; border: none; border-radius: var(--r-lg);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: white; font-weight: 700; font-size: 1rem; cursor: pointer;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Vote Button */
+    .vote-btn {
+      display: flex; align-items: center; gap: 4px;
+      padding: 4px 12px; border-radius: 20px;
+      border: 1px solid var(--border-glass);
+      background: none; color: var(--text-secondary);
+      font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
+    }
+    .vote-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+    .vote-btn.voted { border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59,130,246,0.1); }
+
+    /* Roadmap */
+    .roadmap-col h3 {
+      font-size: 0.85rem; font-weight: 700; margin-bottom: 12px;
+      padding: 8px 12px; border-radius: var(--r-md);
+    }
+    .roadmap-planned h3 { background: rgba(168,85,247,0.15); color: #a855f7; }
+    .roadmap-progress h3 { background: rgba(249,115,22,0.15); color: var(--accent-orange); }
+    .roadmap-done h3 { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center; padding: 40px 20px; color: var(--text-muted);
+    }
+    .empty-state p { font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="content-wrapper">
+    <div class="container">
+      <div class="page-header">
+        <h1>Feature Requests</h1>
+        <p>Community-driven features, bugs, and suggestions</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('browse')">Browse</button>
+        <button class="tab-btn" onclick="switchTab('submit')">Submit</button>
+        <button class="tab-btn" onclick="switchTab('roadmap')">Roadmap</button>
+      </div>
+
+      <!-- Browse Tab -->
+      <div class="tab-content active" id="tab-browse">
+        <div id="request-list">
+          <div class="empty-state"><p>Loading requests...</p></div>
+        </div>
+      </div>
+
+      <!-- Submit Tab -->
+      <div class="tab-content" id="tab-submit">
+        <div class="card">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="fr-category">
+              <option value="feature">Feature Request</option>
+              <option value="bug">Bug Report</option>
+              <option value="lab">Lab Suggestion</option>
+              <option value="quiz">Quiz Suggestion</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="fr-title" placeholder="Brief summary of your request" maxlength="200">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="fr-description" placeholder="Describe what you'd like to see, or the bug you've found..." maxlength="2000"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Your Name (optional)</label>
+            <input type="text" id="fr-name" placeholder="Display name" maxlength="50">
+          </div>
+          <button class="submit-btn" onclick="submitRequest()">Submit Request</button>
+        </div>
+      </div>
+
+      <!-- Roadmap Tab -->
+      <div class="tab-content" id="tab-roadmap">
+        <div class="roadmap-col roadmap-planned">
+          <h3>Planned</h3>
+          <div id="roadmap-planned"></div>
+        </div>
+        <div class="roadmap-col roadmap-progress" style="margin-top:16px;">
+          <h3>In Progress</h3>
+          <div id="roadmap-progress"></div>
+        </div>
+        <div class="roadmap-col roadmap-done" style="margin-top:16px;">
+          <h3>Completed</h3>
+          <div id="roadmap-done"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── Configuration ───
+    // Replace with your Supabase project URL and anon key
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // ─── Tab Switching ───
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(`tab-${tab}`).classList.add('active');
+
+      if (tab === 'browse') loadRequests();
+      if (tab === 'roadmap') loadRoadmap();
+    }
+
+    // ─── Load Browse ───
+    async function loadRequests() {
+      const { data, error } = await supabase
+        .from('feature_requests')
+        .select('*')
+        .neq('status', 'declined')
+        .order('vote_count', { ascending: false });
+
+      const list = document.getElementById('request-list');
+      if (error || !data?.length) {
+        list.innerHTML = '<div class="empty-state"><p>No requests yet. Be the first to submit one!</p></div>';
+        return;
+      }
+
+      list.innerHTML = data.map(r => `
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:start;">
+            <div>
+              <div class="card-title">${escapeHTML(r.title)}</div>
+              <div class="card-desc">${escapeHTML(r.description)}</div>
+              <div class="card-meta">
+                <span class="badge badge-${r.status.replace('_', '-')}">${r.status.replace('_', ' ')}</span>
+                <span>${r.category}</span>
+                <span>by ${escapeHTML(r.user_display_name || 'Anonymous')}</span>
+              </div>
+            </div>
+            <button class="vote-btn" onclick="vote('${r.id}', this)">
+              ▲ ${r.vote_count || 0}
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ─── Submit ───
+    async function submitRequest() {
+      const title = document.getElementById('fr-title').value.trim();
+      const description = document.getElementById('fr-description').value.trim();
+      const category = document.getElementById('fr-category').value;
+      const name = document.getElementById('fr-name').value.trim() || 'Anonymous';
+
+      if (!title || !description) {
+        alert('Please fill in both title and description.');
+        return;
+      }
+
+      const { error } = await supabase.from('feature_requests').insert({
+        title, description, category,
+        user_display_name: name,
+        status: 'submitted'
+      });
+
+      if (error) {
+        alert('Error submitting request. Please try again.');
+        console.error(error);
+        return;
+      }
+
+      // Clear form
+      document.getElementById('fr-title').value = '';
+      document.getElementById('fr-description').value = '';
+      document.getElementById('fr-name').value = '';
+
+      alert('Request submitted! Thank you for your feedback.');
+      switchTab('browse');
+    }
+
+    // ─── Vote ───
+    async function vote(id, btn) {
+      const voted = JSON.parse(localStorage.getItem('fr-votes') || '[]');
+      if (voted.includes(id)) return;
+
+      const { error } = await supabase.rpc('increment_vote', { request_id: id });
+      if (!error) {
+        voted.push(id);
+        localStorage.setItem('fr-votes', JSON.stringify(voted));
+        btn.classList.add('voted');
+        loadRequests();
+      }
+    }
+
+    // ─── Roadmap ───
+    async function loadRoadmap() {
+      const { data } = await supabase
+        .from('feature_requests')
+        .select('title, status, category')
+        .in('status', ['planned', 'in_progress', 'completed'])
+        .order('updated_at', { ascending: false });
+
+      ['planned', 'in_progress', 'completed'].forEach(status => {
+        const key = status === 'in_progress' ? 'progress' : (status === 'completed' ? 'done' : 'planned');
+        const items = (data || []).filter(r => r.status === status);
+        document.getElementById(`roadmap-${key}`).innerHTML = items.length
+          ? items.map(r => `<div class="card"><div class="card-title">${escapeHTML(r.title)}</div><div class="card-meta"><span>${r.category}</span></div></div>`).join('')
+          : '<div class="empty-state"><p>Nothing here yet</p></div>';
+      });
+    }
+
+    // ─── Utils ───
+    function escapeHTML(str) {
+      const div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+
+    // ─── Init ───
+    loadRequests();
+  </script>
+</body>
+</html>
