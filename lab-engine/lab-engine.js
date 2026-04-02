@@ -55,16 +55,19 @@ const LabEngine = (() => {
     container.innerHTML = renderTree(tree);
   }
 
+  const FILE_ICON = `<svg style="width:13px;height:13px;vertical-align:middle;margin-right:5px;opacity:0.8;" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 1h5.5L13 4.5V15a1 1 0 01-1 1H4a1 1 0 01-1-1V2a1 1 0 011-1zm5 0v3h3L9 1z"/></svg>`;
+  const FOLDER_ICON = `<svg style="width:13px;height:13px;vertical-align:middle;margin-right:5px;opacity:0.8;" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1 3.5A1.5 1.5 0 012.5 2h2.764c.67 0 1.265.34 1.57.85l.25.4a.5.5 0 00.42.25H13.5A1.5 1.5 0 0115 5v7.5A1.5 1.5 0 0113.5 14h-11A1.5 1.5 0 011 12.5v-9z"/></svg>`;
+
   function renderTree(node, depth = 0) {
     if (typeof node === 'string') {
       // Leaf file
-      return `<li class="file" onclick="LabEngine.loadFile('${node}')" style="padding-left:${depth * 15}px;">📄 ${node}</li>`;
+      return `<li class="file" onclick="LabEngine.loadFile('${node}')" style="padding-left:${depth * 15}px;">${FILE_ICON} ${node}</li>`;
     }
     if (Array.isArray(node)) {
       return node.map(item => renderTree(item, depth)).join('');
     }
     // Folder object: { name, children }
-    let html = `<li style="padding-left:${depth * 15}px;">📁 ${node.name}</li>`;
+    let html = `<li style="padding-left:${depth * 15}px;">${FOLDER_ICON} ${node.name}</li>`;
     html += `<ul>${node.children.map(c => renderTree(c, depth + 1)).join('')}</ul>`;
     return `<ul>${html}</ul>`;
   }

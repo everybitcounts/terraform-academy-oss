@@ -4,14 +4,25 @@
  * Replace this file with your own question sets.
  * Each module key maps to an array of question objects.
  *
+ * Module metadata format (top-level key alongside the questions array):
+ *   {
+ *     questions: [...],
+ *     estimatedMinutes: number,   // Time estimate displayed before the module starts
+ *     examDomain: string,         // e.g., "Terraform Associate 004 — Domain 2"
+ *     difficulty: string          // "beginner" | "intermediate" | "advanced"
+ *   }
+ *
  * Question format:
  *   {
  *     id: number,
  *     text: string,
- *     options: string[],        // "A. ...", "B. ...", etc.
- *     answer: string | string[], // "B" for single, ["A","C"] for multi-select
+ *     options: string[],          // "A. ...", "B. ...", etc.
+ *     answer: string | string[],  // "B" for single, ["A","C"] for multi-select
  *     explanation: string
  *   }
+ *
+ * Note: estimatedMinutes is required for community contributions.
+ * It sets honest expectations and improves completion rates.
  */
 
 const SAMPLE_QUESTIONS = {

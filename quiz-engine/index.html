@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Quiz Engine Demo — Terraform Academy OSS</title>
+  <title>Quiz Engine Demo | Terraform Academy OSS</title>
   <link rel="stylesheet" href="../theme/variables.css">
   <link rel="stylesheet" href="../theme/glassmorphism.css">
   <link rel="stylesheet" href="../theme/octagons.css">
@@ -14,16 +14,22 @@
 <body>
   <!-- Animated Background -->
   <div class="background-octagons">
-    <span style="top:10%;left:10%;font-size:60px;animation-duration:22s;">⬡</span>
-    <span style="top:40%;left:70%;font-size:80px;animation-duration:18s;">⬡</span>
-    <span style="top:70%;left:30%;font-size:40px;animation-duration:25s;">⬡</span>
-    <span style="top:20%;left:80%;font-size:70px;animation-duration:15s;">⬡</span>
-    <span style="top:80%;left:90%;font-size:50px;animation-duration:28s;">⬡</span>
-    <span style="top:5%;left:40%;font-size:30px;animation-duration:30s;">⬡</span>
+    <svg class="hex" style="top:10%;left:10%;width:60px;height:60px;animation-duration:22s;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex" style="top:40%;left:70%;width:80px;height:80px;animation-duration:18s;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex" style="top:70%;left:30%;width:40px;height:40px;animation-duration:25s;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex" style="top:20%;left:80%;width:70px;height:70px;animation-duration:15s;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex" style="top:80%;left:90%;width:50px;height:50px;animation-duration:28s;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex" style="top:5%;left:40%;width:30px;height:30px;animation-duration:30s;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
   </div>
 
   <!-- Mobile Menu Button -->
-  <button class="menu-button" onclick="QuizEngine.toggleMenu()">☰</button>
+  <button class="menu-button" onclick="QuizEngine.toggleMenu()" aria-label="Open menu">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <rect y="4" width="22" height="2" rx="1"/>
+      <rect y="10" width="22" height="2" rx="1"/>
+      <rect y="16" width="22" height="2" rx="1"/>
+    </svg>
+  </button>
   <div class="menu-overlay" onclick="QuizEngine.toggleMenu()"></div>
 
   <!-- Sidebar -->
@@ -33,6 +39,13 @@
     <ul id="utility-list" style="margin-top: 20px; border-top: 1px solid var(--sidebar-text); padding-top: 10px;">
       <li data-module="review_progress" class="review-tab">Review Progress</li>
     </ul>
+    <div style="padding:16px 12px;border-top:1px solid rgba(255,255,255,0.1);margin-top:auto;">
+      <a href="https://terraformacademy.com" target="_blank" rel="noopener noreferrer"
+         style="display:block;padding:9px 12px;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.4);border-radius:6px;color:#818cf8;text-decoration:none;font-size:0.8rem;font-weight:600;text-align:center;line-height:1.4;">
+        Terraform Academy Pro<br>
+        <span style="font-weight:400;opacity:0.75;font-size:0.74rem;">Real infrastructure &middot; AI coaching &middot; Certification tracks</span>
+      </a>
+    </div>
   </div>
 
   <!-- Main Content -->
@@ -72,6 +85,14 @@
         <div class="question-summary" id="question-summary-module"></div>
         <button class="btn" id="next-module-btn">Next Module</button>
         <button class="btn" id="restart-module-btn">Restart Module</button>
+        <div style="margin-top:20px;padding:14px 18px;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.35);border-radius:8px;text-align:center;">
+          <p style="margin:0 0 4px;font-size:0.82rem;font-weight:600;">These questions are community contributed.</p>
+          <p style="margin:0 0 8px;font-size:0.8rem;opacity:0.65;">Terraform Academy Pro includes expert curated banks mapped to official AWS, Azure, GCP, and Terraform exam objectives.</p>
+          <a href="https://terraformacademy.com" target="_blank" rel="noopener noreferrer"
+             style="color:#818cf8;font-size:0.85rem;font-weight:600;text-decoration:none;">
+            Access exam aligned content on Terraform Academy
+          </a>
+        </div>
       </div>
     </div>
 
@@ -83,6 +104,32 @@
         <p>Date: <span id="completion-date"></span></p>
         <div class="question-summary" id="question-summary-final"></div>
         <button class="btn" id="restart-all-btn">Restart All Modules</button>
+
+        <!-- Share certificate -->
+        <div style="margin-top:20px;text-align:center;">
+          <p style="margin:0 0 10px;font-size:0.8rem;opacity:0.6;letter-spacing:0.02em;">SHARE YOUR COMPLETION</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+            <a id="share-twitter" href="#" target="_blank" rel="noopener noreferrer"
+               style="display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:#000;color:#fff;border-radius:6px;text-decoration:none;font-size:0.84rem;font-weight:600;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.737-8.835L2.25 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Share on X
+            </a>
+            <a id="share-linkedin" href="#" target="_blank" rel="noopener noreferrer"
+               style="display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:#0a66c2;color:#fff;border-radius:6px;text-decoration:none;font-size:0.84rem;font-weight:600;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              Share on LinkedIn
+            </a>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding:20px 24px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.45);border-radius:10px;text-align:center;">
+          <p style="margin:0 0 4px;font-size:1rem;font-weight:600;">You completed the OSS curriculum.</p>
+          <p style="margin:0 0 14px;font-size:0.84rem;opacity:0.75;">Your progress is stored in this browser. Terraform Academy Pro includes cloud synced dashboards, AI coaching on every question you missed, and production grade labs that deploy real infrastructure to AWS, Azure, and GCP.</p>
+          <a href="https://terraformacademy.com" target="_blank" rel="noopener noreferrer"
+             style="display:inline-block;padding:11px 26px;background:#6366f1;color:#fff;border-radius:6px;text-decoration:none;font-size:0.92rem;font-weight:700;letter-spacing:0.01em;">
+            Get Certified with Terraform Academy
+          </a>
+          <p style="margin:12px 0 0;font-size:0.75rem;opacity:0.5;">Powered by Terraform Academy OSS &middot; <a href="https://terraformacademy.com" target="_blank" rel="noopener noreferrer" style="color:inherit;">terraformacademy.com</a></p>
+        </div>
       </div>
     </div>
   </div>

@@ -7,6 +7,9 @@
 
 const SAMPLE_LAB = {
   title: 'VPC + Subnet Lab',
+  estimatedMinutes: 20,         // Displayed on the lab start screen. Required for community contributions.
+  difficulty: 'beginner',       // 'beginner' | 'intermediate' | 'advanced'
+  examDomain: 'Terraform Associate 004 — Infrastructure as Code Concepts',
   instructionTitle: 'Create a VPC with Subnets and Internet Access',
   instructionHTML: `
     <p>In the <strong>Code Editor</strong>, open the <code>network.tf</code> file.</p>

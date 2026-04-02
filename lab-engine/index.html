@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Lab Engine Demo — Terraform Academy OSS</title>
+  <title>Lab Engine Demo | Terraform Academy OSS</title>
   <link rel="stylesheet" href="../theme/variables.css">
   <link rel="stylesheet" href="../theme/octagons.css">
   <link rel="stylesheet" href="lab-engine.css">
@@ -13,12 +13,12 @@
 <body>
   <!-- Background -->
   <div class="background-octagons">
-    <span class="oct1" style="top:10%; left:10%;">⬡</span>
-    <span class="oct2" style="top:40%; left:70%;">⬡</span>
-    <span class="oct3" style="top:70%; left:30%;">⬡</span>
-    <span class="oct4" style="top:20%; left:80%;">⬡</span>
-    <span class="oct1" style="top:85%; left:15%;">⬡</span>
-    <span class="oct2" style="top:65%; left:90%;">⬡</span>
+    <svg class="hex oct1" style="top:10%; left:10%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex oct2" style="top:40%; left:70%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex oct3" style="top:70%; left:30%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex oct4" style="top:20%; left:80%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex oct1" style="top:85%; left:15%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+    <svg class="hex oct2" style="top:65%; left:90%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="6"/></svg>
   </div>
 
   <!-- Main Layout -->
@@ -51,14 +51,18 @@
         <!-- Code Editor -->
         <div class="editor-section">
           <h3>Code Editor</h3>
-          <button class="modal-toggle" onclick="LabEngine.openEditorModal()">↗</button>
+          <button class="modal-toggle" onclick="LabEngine.openEditorModal()" aria-label="Expand editor">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9 0h5v5l-2-2-3 3-1.5-1.5 3-3L9 0zM0 9l2 2 3-3L6.5 9.5l-3 3L5 14H0V9z"/></svg>
+          </button>
           <textarea id="editor" spellcheck="false"></textarea>
         </div>
 
         <!-- Terminal -->
         <div class="terminal-section">
           <h3>Terminal</h3>
-          <button class="modal-toggle" onclick="LabEngine.openTerminalModal()">↗</button>
+          <button class="modal-toggle" onclick="LabEngine.openTerminalModal()" aria-label="Expand terminal">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M9 0h5v5l-2-2-3 3-1.5-1.5 3-3L9 0zM0 9l2 2 3-3L6.5 9.5l-3 3L5 14H0V9z"/></svg>
+          </button>
           <textarea id="terminal" readonly>Initializing lab environment...
 Ready.</textarea>
         </div>
@@ -84,7 +88,9 @@ Ready.</textarea>
           <textarea id="editorModalContent" spellcheck="false"></textarea>
         </div>
       </div>
-      <button class="modal-toggle" onclick="LabEngine.closeEditorModal()">✕</button>
+      <button class="modal-toggle" onclick="LabEngine.closeEditorModal()" aria-label="Close editor">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      </button>
     </div>
   </dialog>
 
@@ -98,24 +104,35 @@ Ready.</textarea>
           <textarea id="terminalModalContent" readonly></textarea>
         </div>
       </div>
-      <button class="modal-toggle" onclick="LabEngine.closeTerminalModal()">✕</button>
+      <button class="modal-toggle" onclick="LabEngine.closeTerminalModal()" aria-label="Close terminal">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      </button>
     </div>
   </dialog>
 
   <!-- Completion Prompt -->
   <div id="completionPrompt">
     <div class="burst-octagons">
-      <span class="burst-oct" style="top:10%; left:20%;">⬡</span>
-      <span class="burst-oct" style="top:30%; left:40%;">⬡</span>
-      <span class="burst-oct" style="top:50%; left:60%;">⬡</span>
-      <span class="burst-oct" style="top:70%; left:80%;">⬡</span>
-      <span class="burst-oct" style="top:20%; left:70%;">⬡</span>
-      <span class="burst-oct" style="top:60%; left:10%;">⬡</span>
+      <svg class="burst-oct" style="top:10%; left:20%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="8"/></svg>
+      <svg class="burst-oct" style="top:30%; left:40%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="8"/></svg>
+      <svg class="burst-oct" style="top:50%; left:60%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="8"/></svg>
+      <svg class="burst-oct" style="top:70%; left:80%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="8"/></svg>
+      <svg class="burst-oct" style="top:20%; left:70%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="8"/></svg>
+      <svg class="burst-oct" style="top:60%; left:10%;" viewBox="0 0 100 100"><polygon points="50,3 97,25 97,75 50,97 3,75 3,25" fill="none" stroke="currentColor" stroke-width="8"/></svg>
     </div>
     <div class="burst-message">
       <h2>Nicely Done!</h2>
       <p id="completion-text">Congrats on completing the lab!</p>
       <button onclick="LabEngine.restart()">Restart</button>
+      <div class="upgrade-cta" style="margin-top:24px;padding:16px 20px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);border-radius:10px;text-align:center;">
+        <p style="margin:0 0 4px;font-size:0.85rem;font-weight:600;">This lab ran in simulation mode.</p>
+        <p style="margin:0 0 10px;font-size:0.8rem;opacity:0.65;">Terraform Academy Pro runs the same lab against real AWS, Azure, or GCP infrastructure in an isolated sandbox, with AI coaching on every validation failure.</p>
+        <a href="https://terraformacademy.com" target="_blank" rel="noopener noreferrer"
+           style="display:inline-block;padding:10px 22px;background:#6366f1;color:#fff;border-radius:6px;text-decoration:none;font-size:0.9rem;font-weight:600;letter-spacing:0.01em;">
+          Run on Real Infrastructure
+        </a>
+        <p style="margin:10px 0 0;font-size:0.75rem;opacity:0.5;">Real cloud labs &middot; AI coaching &middot; Certification tracks</p>
+      </div>
     </div>
   </div>
 

@@ -244,7 +244,7 @@ body.app-mode .modal-body textarea {
   position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: 1;
 }
 .burst-oct {
-  position: absolute; font-size: 4rem; font-weight: bold;
+  position: absolute; width: 4rem; height: 4rem;
   color: rgba(79,195,247,0.8);
   animation: pulseburst 4s ease-in-out infinite;
 }

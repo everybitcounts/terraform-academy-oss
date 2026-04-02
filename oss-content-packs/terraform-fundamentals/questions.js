@@ -1,10 +1,19 @@
 /**
  * Terraform Fundamentals Question Bank
  * Open Source Content Pack for Terraform Academy OSS
- * 
- * 25 questions covering core Terraform concepts
- * Suitable for beginners preparing for HashiCorp Terraform Associate
- * 
+ *
+ * 25 questions mapped to official HashiCorp Terraform Associate 004 exam domains.
+ * Domain alignment verified against the official exam review guide (004 objectives).
+ *
+ * Official exam domains:
+ *   Domain 1: Understand Infrastructure as Code (IaC) concepts         (~16%)
+ *   Domain 2: Understand the purpose of Terraform vs other IaC         (~8%)
+ *   Domain 3: Understand Terraform basics                              (~24%)
+ *   Domain 4: Use Terraform outside the core workflow                  (~16%)
+ *   Domain 5: Interact with Terraform modules                          (~12%)
+ *   Domain 6: Use the core Terraform workflow                          (~8%)
+ *   Domain 7: Implement and maintain Terraform state                   (~16%)
+ *
  * License: MIT
  * More questions available at https://terraformacademy.com (PRO) and https://terraformacademy.app (MAX)
  */
@@ -12,11 +21,13 @@
 const TerraformFundamentalsQuestions = {
   id: 'terraform-fundamentals',
   title: 'Terraform Fundamentals',
-  description: 'Core concepts for infrastructure as code with Terraform',
-  version: '1.0.0',
+  description: 'Core concepts for infrastructure as code with Terraform, aligned to the Terraform Associate 004 exam objectives.',
+  version: '1.1.0',
   difficulty: 'beginner',
+  estimatedMinutes: 30,
   estimatedTime: 30,
   passingScore: 70,
+  examAlignment: 'HashiCorp Terraform Associate 004',
 
   questions: [
     {
@@ -30,7 +41,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'Terraform is an Infrastructure as Code (IaC) tool that allows you to define and provision infrastructure using a declarative configuration language.',
-      domain: 'Core Concepts'
+      domain: 'Domain 1: Understand Infrastructure as Code (IaC) concepts',
+      examObjective: '1a - Explain what IaC is'
     },
     {
       id: 'tf-002',
@@ -43,7 +55,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 2,
       explanation: 'Terraform configuration files use the .tf extension and are written in HashiCorp Configuration Language (HCL).',
-      domain: 'Core Concepts'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3a - Install and version Terraform providers'
     },
     {
       id: 'tf-003',
@@ -56,7 +69,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform init command initializes a working directory containing Terraform configuration files and downloads required providers.',
-      domain: 'CLI Commands'
+      domain: 'Domain 6: Use the core Terraform workflow',
+      examObjective: '6a - Describe Terraform workflow (Write, Plan, Apply)'
     },
     {
       id: 'tf-004',
@@ -69,7 +83,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 2,
       explanation: 'The provider block configures the specified provider (AWS, Azure, GCP, etc.) and is responsible for understanding API interactions.',
-      domain: 'Configuration'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3b - Describe plugin-based architecture and provider installation'
     },
     {
       id: 'tf-005',
@@ -82,7 +97,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform plan command creates an execution plan showing what actions Terraform will take to reach the desired state.',
-      domain: 'CLI Commands'
+      domain: 'Domain 6: Use the core Terraform workflow',
+      examObjective: '6a - Describe Terraform workflow (Write, Plan, Apply)'
     },
     {
       id: 'tf-006',
@@ -95,7 +111,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'By default, Terraform stores state locally in a file named terraform.tfstate. Remote backends can be configured for team collaboration.',
-      domain: 'State Management'
+      domain: 'Domain 7: Implement and maintain Terraform state',
+      examObjective: '7a - Describe default local backend'
     },
     {
       id: 'tf-007',
@@ -108,7 +125,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'A module is a container for multiple resources that are used together. Modules promote reusability and organization.',
-      domain: 'Modules'
+      domain: 'Domain 5: Interact with Terraform modules',
+      examObjective: '5a - Contrast module source options'
     },
     {
       id: 'tf-008',
@@ -121,7 +139,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform apply command executes the actions proposed in a Terraform plan to create, update, or destroy infrastructure.',
-      domain: 'CLI Commands'
+      domain: 'Domain 6: Use the core Terraform workflow',
+      examObjective: '6a - Describe Terraform workflow (Write, Plan, Apply)'
     },
     {
       id: 'tf-009',
@@ -134,7 +153,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The .terraform.lock.hcl file records the provider versions used, ensuring consistent installations across team members.',
-      domain: 'Configuration'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3a - Install and version Terraform providers'
     },
     {
       id: 'tf-010',
@@ -147,7 +167,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 2,
       explanation: 'Resource attributes are referenced using the syntax resource_type.resource_name.attribute, such as aws_instance.web.id.',
-      domain: 'Configuration'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3c - Understand Terraform resource block and resource addressing'
     },
     {
       id: 'tf-011',
@@ -160,7 +181,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform destroy command terminates all resources defined in your Terraform configuration.',
-      domain: 'CLI Commands'
+      domain: 'Domain 6: Use the core Terraform workflow',
+      examObjective: '6b - Initialize a Terraform working directory (terraform init)'
     },
     {
       id: 'tf-012',
@@ -173,7 +195,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 2,
       explanation: 'The variable block defines input variables that make configurations flexible and reusable.',
-      domain: 'Variables'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3d - Understand variable declaration, types, and precedence'
     },
     {
       id: 'tf-013',
@@ -186,7 +209,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'Output blocks export information about your infrastructure that can be used by other configurations or displayed after apply.',
-      domain: 'Variables'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3d - Understand variable declaration, types, and precedence'
     },
     {
       id: 'tf-014',
@@ -199,7 +223,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The S3 backend stores state in an Amazon S3 bucket. Other popular options include Azure Blob Storage and Google Cloud Storage.',
-      domain: 'State Management'
+      domain: 'Domain 7: Implement and maintain Terraform state',
+      examObjective: '7b - Describe remote state storage methods and backend types'
     },
     {
       id: 'tf-015',
@@ -212,7 +237,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'Data sources allow Terraform to query and use information defined outside of Terraform or managed by another configuration.',
-      domain: 'Configuration'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3c - Understand Terraform resource block and resource addressing'
     },
     {
       id: 'tf-016',
@@ -225,7 +251,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'A variable without a default value is required. Users must provide a value when running Terraform.',
-      domain: 'Variables'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3d - Understand variable declaration, types, and precedence'
     },
     {
       id: 'tf-017',
@@ -238,7 +265,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform fmt command rewrites configuration files to a canonical format and style.',
-      domain: 'CLI Commands'
+      domain: 'Domain 4: Use Terraform outside the core workflow',
+      examObjective: '4a - Describe when to use terraform import, terraform taint, terraform fmt, terraform taint, terraform state'
     },
     {
       id: 'tf-018',
@@ -251,7 +279,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform validate command checks whether a configuration is syntactically valid and internally consistent.',
-      domain: 'CLI Commands'
+      domain: 'Domain 6: Use the core Terraform workflow',
+      examObjective: '6c - Apply a Terraform configuration (terraform apply)'
     },
     {
       id: 'tf-019',
@@ -264,7 +293,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'Variables can be set via command line flags, .tfvars files, environment variables (TF_VAR_name), or interactively.',
-      domain: 'Variables'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3d - Understand variable declaration, types, and precedence'
     },
     {
       id: 'tf-020',
@@ -277,7 +307,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The count meta argument creates multiple instances of a resource based on a whole number value.',
-      domain: 'Configuration'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3c - Understand Terraform resource block and resource addressing'
     },
     {
       id: 'tf-021',
@@ -290,7 +321,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 0,
       explanation: 'Setting prevent_destroy = true in a lifecycle block causes Terraform to reject any plan that would destroy the resource.',
-      domain: 'Configuration'
+      domain: 'Domain 4: Use Terraform outside the core workflow',
+      examObjective: '4b - Explain the use of resource lifecycle meta arguments'
     },
     {
       id: 'tf-022',
@@ -303,7 +335,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'Workspaces allow you to manage multiple distinct sets of infrastructure resources using the same configuration.',
-      domain: 'State Management'
+      domain: 'Domain 4: Use Terraform outside the core workflow',
+      examObjective: '4c - Describe Terraform workspaces'
     },
     {
       id: 'tf-023',
@@ -316,7 +349,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 2,
       explanation: 'The toset() function converts a list to a set, removing duplicate values and the concept of ordering.',
-      domain: 'Functions'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3e - Understand Terraform built-in functions'
     },
     {
       id: 'tf-024',
@@ -329,7 +363,8 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 1,
       explanation: 'The terraform refresh command reads the current state of existing remote objects and updates the state file.',
-      domain: 'State Management'
+      domain: 'Domain 7: Implement and maintain Terraform state',
+      examObjective: '7c - Describe the effect of Terraform refresh on state'
     },
     {
       id: 'tf-025',
@@ -342,18 +377,19 @@ const TerraformFundamentalsQuestions = {
       ],
       correctAnswer: 0,
       explanation: 'The depends_on meta argument explicitly specifies dependencies when Terraform cannot automatically determine them.',
-      domain: 'Configuration'
+      domain: 'Domain 3: Understand Terraform basics',
+      examObjective: '3c - Understand Terraform resource block and resource addressing'
     }
   ],
 
   domains: [
-    { name: 'Core Concepts', count: 2 },
-    { name: 'CLI Commands', count: 6 },
-    { name: 'Configuration', count: 7 },
-    { name: 'State Management', count: 4 },
-    { name: 'Variables', count: 4 },
-    { name: 'Modules', count: 1 },
-    { name: 'Functions', count: 1 }
+    { name: 'Domain 1: Understand Infrastructure as Code (IaC) concepts', count: 1, weight: '~16%' },
+    { name: 'Domain 2: Understand the purpose of Terraform vs other IaC', count: 0, weight: '~8%' },
+    { name: 'Domain 3: Understand Terraform basics', count: 12, weight: '~24%' },
+    { name: 'Domain 4: Use Terraform outside the core workflow', count: 3, weight: '~16%' },
+    { name: 'Domain 5: Interact with Terraform modules', count: 1, weight: '~12%' },
+    { name: 'Domain 6: Use the core Terraform workflow', count: 5, weight: '~8%' },
+    { name: 'Domain 7: Implement and maintain Terraform state', count: 3, weight: '~16%' }
   ]
 };
 

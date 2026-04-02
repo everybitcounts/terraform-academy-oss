@@ -334,6 +334,16 @@ const QuizEngine = (() => {
       $('completion-date').textContent = new Date().toLocaleDateString();
       generateSummary('final');
       $('final-certificate').classList.add('active');
+
+      // Wire share buttons with contextual text
+      const shareText = encodeURIComponent(
+        'I just completed the ' + config.title + ' on Terraform Academy OSS. Studying for a cloud certification?'
+      );
+      const shareUrl = encodeURIComponent('https://terraformacademy.com');
+      const twitterBtn = $('share-twitter');
+      const linkedinBtn = $('share-linkedin');
+      if (twitterBtn) twitterBtn.href = 'https://twitter.com/intent/tweet?text=' + shareText + '&url=' + shareUrl;
+      if (linkedinBtn) linkedinBtn.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + shareUrl;
     }
   }
 
@@ -364,6 +374,17 @@ const QuizEngine = (() => {
           Score: ${data.score} / ${total} (${pct}%)
         </div>`;
     });
+
+    html += `
+      <div style="margin-top:28px;padding:18px 20px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.35);border-radius:8px;text-align:center;">
+        <p style="margin:0 0 4px;font-size:0.88rem;font-weight:600;">Progress is stored in this browser only.</p>
+        <p style="margin:0 0 10px;font-size:0.82rem;opacity:0.65;">Terraform Academy Pro syncs your progress across devices, tracks it against official exam objectives, and shows exactly which topics need more work.</p>
+        <a href="https://terraformacademy.com" target="_blank" rel="noopener noreferrer"
+           style="display:inline-block;padding:9px 20px;background:#6366f1;color:#fff;border-radius:5px;text-decoration:none;font-size:0.85rem;font-weight:700;">
+          Switch to Terraform Academy
+        </a>
+      </div>`;
+
     container.innerHTML = html;
 
     document.querySelectorAll('#module-list li, #utility-list li').forEach(li => li.classList.remove('active'));
