@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g. 1.4.0)"
+        required: true
+        type: string
+      release_notes:
+        description: "Release notes (one line summary)"
+        required: true
+        type: string
+      prerelease:
+        description: "Mark as pre-release?"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate semver format
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
+            echo "ERROR: '$VERSION' is not valid semver (expected format: MAJOR.MINOR.PATCH)"
+            exit 1
+          fi
+          echo "VERSION=v$VERSION" >> $GITHUB_ENV
+
+      - name: Check tag does not already exist
+        run: |
+          if git tag -l | grep -q "^${{ env.VERSION }}$"; then
+            echo "ERROR: Tag ${{ env.VERSION }} already exists. Bump the version."
+            exit 1
+          fi
+
+      - name: Generate changelog since last tag
+        id: changelog
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --oneline --no-merges | head -20)
+          else
+            COMMITS=$(git log "${LAST_TAG}..HEAD" --oneline --no-merges | head -30)
+          fi
+          echo "LAST_TAG=$LAST_TAG" >> $GITHUB_ENV
+          {
+            echo 'COMMITS<<EOF'
+            echo "$COMMITS"
+            echo 'EOF'
+          } >> $GITHUB_ENV
+
+      - name: Tag and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${{ env.VERSION }}" -m "Release ${{ env.VERSION }}: ${{ github.event.inputs.release_notes }}"
+          git push origin "${{ env.VERSION }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: "${{ env.VERSION }} — ${{ github.event.inputs.release_notes }}"
+          prerelease: ${{ github.event.inputs.prerelease }}
+          body: |
+            ## ${{ env.VERSION }} — ${{ github.event.inputs.release_notes }}
+
+            **Released:** ${{ github.run_started_at }}
+            **Previous tag:** ${{ env.LAST_TAG }}
+
+            ### Changes since ${{ env.LAST_TAG }}
+
+            ```
+            ${{ env.COMMITS }}
+            ```
+
+            ---
+
+            ### Attribution
+
+            Built with [Terraform Academy OSS](https://github.com/everybitcounts/terraform-academy-oss).
+            Licensed under Apache 2.0. See [NOTICE](https://github.com/everybitcounts/terraform-academy-oss/blob/main/NOTICE) for attribution requirements.
+
+            For full certification prep (Terraform Associate, AWS SAA, GCP ACE, CKAD, DCA), visit [Terraform Academy MAX](https://terraformacademy.app).
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

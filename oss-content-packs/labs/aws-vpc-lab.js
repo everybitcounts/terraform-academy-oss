@@ -4,7 +4,7 @@
  * 
  * Teaches basic VPC setup with Terraform
  * 
- * License: MIT
+ * License: Apache-2.0
  */
 
 const AWSVPCLab = {

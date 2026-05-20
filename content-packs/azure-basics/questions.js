@@ -5,7 +5,7 @@
  * 25 questions covering Azure fundamentals
  * Suitable for beginners preparing for Azure Fundamentals AZ-900
  * 
- * License: MIT
+ * License: Apache-2.0
  * More questions available at https://terraformacademy.com (PRO) and https://terraformacademy.app (MAX)
  */
 

@@ -14,7 +14,7 @@
  *   Domain 6: Use the core Terraform workflow                          (~8%)
  *   Domain 7: Implement and maintain Terraform state                   (~16%)
  *
- * License: MIT
+ * License: Apache-2.0
  * More questions available at https://terraformacademy.com (PRO) and https://terraformacademy.app (MAX)
  */
 

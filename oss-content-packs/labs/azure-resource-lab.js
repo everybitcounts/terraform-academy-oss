@@ -4,7 +4,7 @@
  * 
  * Teaches basic Azure resource provisioning with Terraform
  * 
- * License: MIT
+ * License: Apache-2.0
  */
 
 const AzureResourceLab = {

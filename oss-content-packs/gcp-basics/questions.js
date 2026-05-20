@@ -5,7 +5,7 @@
  * 25 questions covering Google Cloud Platform fundamentals
  * Suitable for beginners preparing for Cloud Digital Leader
  * 
- * License: MIT
+ * License: Apache-2.0
  * More questions available at https://terraformacademy.com (PRO) and https://terraformacademy.app (MAX)
  */
 

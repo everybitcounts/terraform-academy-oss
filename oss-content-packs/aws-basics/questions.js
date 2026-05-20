@@ -5,7 +5,7 @@
  * 25 questions covering AWS fundamentals
  * Suitable for beginners preparing for AWS Cloud Practitioner
  * 
- * License: MIT
+ * License: Apache-2.0
  * More questions available at https://terraformacademy.com (PRO) and https://terraformacademy.app (MAX)
  */
 

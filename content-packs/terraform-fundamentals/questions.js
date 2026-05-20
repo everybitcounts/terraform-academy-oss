@@ -5,7 +5,7 @@
  * 25 questions covering core Terraform concepts
  * Suitable for beginners preparing for HashiCorp Terraform Associate
  * 
- * License: MIT
+ * License: Apache-2.0
  * More questions available at https://terraformacademy.com (PRO) and https://terraformacademy.app (MAX)
  */
 
