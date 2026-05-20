@@ -2,7 +2,7 @@
 
 > The open source framework for building cloud infrastructure learning platforms.
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Powered by Terraform Academy](https://img.shields.io/badge/Powered%20by-Terraform%20Academy-6366f1.svg)](https://terraformacademy.com)
 [![Sponsor](https://img.shields.io/github/sponsors/everybitcounts?label=Sponsor&logo=GitHub&color=ea4aaa)](https://github.com/sponsors/everybitcounts)
@@ -166,7 +166,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines and [ROADMAP.md](ROADMAP.m
 
 ## License
 
-MIT. See [LICENSE](LICENSE) for details.
+Apache License 2.0. See [LICENSE](LICENSE) for full terms.
+
+All forks, derivative works, and products built with this software must include attribution to **Terraform Academy** per the [NOTICE](NOTICE) file. This is a binding condition under Section 4(d) of the Apache License.
 
 ---
 

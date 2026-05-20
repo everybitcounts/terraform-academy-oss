@@ -1,0 +1,42 @@
+Terraform Academy OSS
+Copyright 2025-2026 CoGen, LLC
+
+This software is built on and derived from Terraform Academy
+(https://terraformacademy.app), the cloud infrastructure training platform
+developed and operated by CoGen, LLC.
+
+---
+
+ATTRIBUTION REQUIREMENT
+
+All distributions, forks, derivative works, and products built using this
+software — whether modified or unmodified, in source or binary form — must
+include the following attribution in a clearly visible location:
+
+  "Built with Terraform Academy OSS (https://github.com/everybitcounts/terraform-academy-oss),
+   developed by CoGen, LLC / Terraform Academy (https://terraformacademy.app)."
+
+Acceptable locations include:
+
+  - A NOTICE or CREDITS file in the root of the repository
+  - An "About" page, footer, or credits screen in the distributed application
+  - Documentation accompanying the software
+
+This attribution requirement is part of the Apache License 2.0 NOTICE
+mechanism (Section 4(d)) and is legally binding on all downstream recipients
+of this Work and any Derivative Works.
+
+Use of the name "Terraform Academy" or the Terraform Academy logo to imply
+endorsement of a derived product is not permitted without written consent
+from CoGen, LLC.
+
+---
+
+THIRD-PARTY COMPONENTS
+
+This software may include components from the following open source projects:
+
+  - Supabase (https://supabase.com) — Apache License 2.0
+  - Cloudflare Workers (https://workers.cloudflare.com) — Cloudflare Terms of Service
+
+See individual component directories for their respective license notices.
